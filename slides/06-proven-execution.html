@@ -321,9 +321,12 @@
 
         // 키보드 네비게이션
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowLeft') {
+            if (event.key === 'ArrowLeft' || event.key === 'Tab') {
                 window.location.href = '05-solution-overview.html';
-            } else if (event.key === 'ArrowRight') {
+                if (event.key === 'Tab') {
+                    event.preventDefault();
+                }
+            } else if (event.key === 'ArrowRight' || event.key === 'Enter') {
                 window.location.href = '07-learnings-and-limitations.html';
             }
         });
