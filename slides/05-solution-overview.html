@@ -3,9 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESG GenAI Compliance Platform - Solution Overview</title>
+    <title>ESG GenAI Compliance Platform - GRI Answer Engine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/common.css">
+    <style>
+        .ai-factory-container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 32px;
+            margin: 24px 0;
+            border: 3px solid #6f42c1;
+            box-shadow: 0 8px 32px rgba(111, 66, 193, 0.15);
+        }
+        
+        .factory-process {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 32px 0;
+        }
+        
+        .factory-step {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            min-width: 200px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .factory-step.input-model {
+            border-color: #2196F3;
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, white 100%);
+        }
+        
+        .factory-step.fine-tuning {
+            border-color: #FF9800;
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, white 100%);
+            transform: scale(1.1);
+            position: relative;
+        }
+        
+        .factory-step.output-model {
+            border-color: #6f42c1;
+            background: linear-gradient(135deg, rgba(111, 66, 193, 0.1) 0%, white 100%);
+            position: relative;
+        }
+        
+        .factory-step.output-model::after {
+            content: '✨ SPECIALIST';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6f42c1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            animation: specialist-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes specialist-glow {
+            0% { box-shadow: 0 0 10px rgba(111, 66, 193, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(111, 66, 193, 0.8); }
+        }
+        
+        .factory-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        
+        .factory-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2C3E50;
+        }
+        
+        .factory-subtitle {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .factory-connector {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2196F3 0%, #FF9800 50%, #6f42c1 100%);
+            z-index: -1;
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+        
+        .answer-generation {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(33, 150, 243, 0.05) 100%);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            border: 2px solid #4CAF50;
+        }
+        
+        .generation-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 32px 0;
+            gap: 24px;
+        }
+        
+        .generation-step {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4CAF50;
+            position: relative;
+        }
+        
+        .generation-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #FFD700, #4CAF50);
+        }
+        
+        .step-number-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #4CAF50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .transparency-section {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFECB3 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            border-left: 6px solid #FF9800;
+            position: relative;
+        }
+        
+        .demo-cta {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            color: white;
+            margin: 32px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-cta::before {
+            content: '🚀';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 48px;
+            opacity: 0.3;
+            animation: rocket-fly 3s ease-in-out infinite;
+        }
+        
+        @keyframes rocket-fly {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10px, -10px) rotate(15deg); }
+        }
+        
+        .limitation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 16px 0;
+        }
+        
+        .limitation-item {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid #FF9800;
+        }
+        
+        .prompt-visualization {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            border: 2px dashed #4CAF50;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            position: relative;
+        }
+        
+        .prompt-visualization::before {
+            content: 'Structured Prompt';
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="slide-container">
@@ -28,197 +251,210 @@
         
         <!-- 메인 콘텐츠 -->
         <div class="slide-content">
-            <div class="text-center mb-10">
-                <h1 class="heading-3 mb-4">Solution Overview</h1>
+            <div class="text-center mb-6">
+                <h1 class="heading-3 mb-4">GRI Answer Engine</h1>
                 <div class="accent-line"></div>
+                <div class="body-large text-muted mt-4">
+                    일반적인 AI가 아닌, <strong>GRI 전문가 AI</strong>가 보고서를 생성합니다
+                </div>
             </div>
             
-            <div class="grid grid--3 grid--gap-lg" style="height: 600px;">
-                <!-- Intelligence 카드 -->
-                <div class="card card--bordered card--purple flex flex-col">
-                    <div class="icon-container icon-container--purple relative">
-                        <div class="ai-badge rainbow">AI-Powered</div>
-                        <i class="fas fa-brain" style="font-size: 24px;"></i>
-                    </div>
-                    <h3 class="heading-6 mb-4">Intelligence</h3>
-                    <div class="body-base flex-1">
-                        <p class="mb-4">
-                            GenAI 기반 자동 분석으로 ESG 데이터를 실시간으로 처리하고 
-                            인사이트를 제공합니다.
-                        </p>
-                        
-                        <div class="mt-6 pt-5" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div class="body-large font-weight-600 mb-4" style="color: #8b5cf6;">
-                                <i class="fas fa-route mr-2"></i>
-                                AI 분석 프로세스
-                            </div>
-                            <div class="process-steps">
-                                <div class="process-step process-step--red">
-                                    <div class="step-number">1</div>
-                                    <div class="step-content">
-                                        <div class="step-title">Data Collection</div>
-                                        <div class="step-description">AI 크롤링으로 뉴스, 보고서, 공시자료 자동 수집</div>
-                                    </div>
-                                </div>
-                                <div class="process-step process-step--orange">
-                                    <div class="step-number">2</div>
-                                    <div class="step-content">
-                                        <div class="step-title">AI Analysis</div>
-                                        <div class="step-description">GenAI 기반 ESG 리스크 자동 분석 및 평가</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="metrics-section">
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: #8b5cf6;">95%</span>
-                                    <div class="metric-label">정확도</div>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: #8b5cf6;">24/7</span>
-                                    <div class="metric-label">실시간 분석</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Section 1: AI 모델 팩토리 -->
+            <div class="ai-factory-container">
+                <h2 class="heading-5 text-center mb-4" style="color: #6f42c1;">
+                    <i class="fas fa-industry" style="margin-right: 8px;"></i>
+                    우리는 일반적인 AI를 사용하지 않습니다. GRI 전문가를 훈련시켰습니다
+                </h2>
                 
-                <!-- Automation 카드 -->
-                <div class="card card--bordered card--info flex flex-col">
-                    <div class="icon-container icon-container--info relative">
-                        <div class="ai-badge rainbow">Automated</div>
-                        <i class="fas fa-cogs" style="font-size: 24px;"></i>
-                    </div>
-                    <h3 class="heading-6 mb-4">Automation</h3>
-                    <div class="body-base flex-1">
-                        <p class="mb-4">
-                            수작업 프로세스를 완전 자동화하여 
-                            효율성을 극대화합니다.
-                        </p>
-                        
-                        <div class="feature-items mt-4">
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="feature-text">자동 보고서 생성</div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="feature-text">실시간 모니터링</div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="feature-text">알림 시스템</div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="feature-text">워크플로우 자동화</div>
-                            </div>
-                        </div>
-                        
-                        <div class="metrics-section">
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: var(--color-info);">90%</span>
-                                    <div class="metric-label">시간 단축</div>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: var(--color-info);">80%</span>
-                                    <div class="metric-label">비용 절감</div>
-                                </div>
-                            </div>
+                <div class="factory-process">
+                    <div class="factory-connector"></div>
+                    
+                    <!-- Input: Base Model -->
+                    <div class="factory-step input-model">
+                        <i class="fas fa-microchip factory-icon" style="color: #2196F3;"></i>
+                        <div class="factory-title">EleutherAI</div>
+                        <div class="factory-subtitle">polyglot-ko-5.8b</div>
+                        <div style="margin-top: 8px; font-size: 11px; color: #666;">
+                            강력한 한국어 기반 모델
                         </div>
                     </div>
-                </div>
-                
-                <!-- Compliance 카드 -->
-                <div class="card card--bordered card--success flex flex-col">
-                    <div class="icon-container icon-container--success relative">
-                        <div class="ai-badge rainbow">Compliant</div>
-                        <i class="fas fa-shield-alt" style="font-size: 24px;"></i>
-                    </div>
-                    <h3 class="heading-6 mb-4">Compliance</h3>
-                    <div class="body-base flex-1">
-                        <p class="mb-4">
-                            글로벌 ESG 표준을 완벽하게 준수하는 보고서를 생성합니다.
-                        </p>
-                        
-                        <div class="standards-grid mt-4">
-                            <div class="standard-item">
-                                <div class="standard-name">GRI</div>
-                                <div class="standard-desc">Global Reporting Initiative</div>
-                            </div>
-                            <div class="standard-item">
-                                <div class="standard-name">SASB</div>
-                                <div class="standard-desc">Sustainability Accounting Standards</div>
-                            </div>
-                            <div class="standard-item">
-                                <div class="standard-name">TCFD</div>
-                                <div class="standard-desc">Task Force on Climate</div>
-                            </div>
-                            <div class="standard-item">
-                                <div class="standard-name">ISSB</div>
-                                <div class="standard-desc">International Sustainability Standards</div>
-                            </div>
+                    
+                    <!-- Process: Fine-Tuning -->
+                    <div class="factory-step fine-tuning">
+                        <i class="fas fa-cogs factory-icon" style="color: #FF9800;"></i>
+                        <div class="factory-title">Fine-Tuning</div>
+                        <div class="factory-subtitle">GRI Training Dataset</div>
+                        <div style="margin-top: 8px; font-size: 11px; color: #666;">
+                            독점 GRI 데이터셋으로<br/>전문 훈련
                         </div>
-                        
-                        <div class="metrics-section">
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: var(--color-success);">100%</span>
-                                    <div class="metric-label">표준 준수</div>
-                                </div>
-                                <div class="metric-item">
-                                    <span class="metric-value" style="color: var(--color-success);">4+</span>
-                                    <div class="metric-label">글로벌 표준</div>
-                                </div>
-                            </div>
+                    </div>
+                    
+                    <!-- Output: Specialist Model -->
+                    <div class="factory-step output-model">
+                        <i class="fas fa-brain factory-icon" style="color: #6f42c1;"></i>
+                        <div class="factory-title">KoAlpaca-GRI</div>
+                        <div class="factory-subtitle">Specialist Model</div>
+                        <div style="margin-top: 8px; font-size: 11px; color: #666;">
+                            GRI 표준 전문가 AI
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 슬라이드 네비게이션 -->
-        <div class="slide-nav">
-            <a href="04-competitive-landscape.html" class="nav-btn">
-                <i class="fas fa-arrow-left"></i>
-                이전
-            </a>
-            <a href="../index.html" class="nav-btn">
-                <i class="fas fa-home"></i>
-                홈
-            </a>
-            <a href="06-key-features.html" class="nav-btn">
-                <i class="fas fa-arrow-right"></i>
-                다음
-            </a>
+            
+            <!-- Section 2: 3단계 답변 생성 프로세스 -->
+            <div class="answer-generation">
+                <h2 class="heading-5 text-center mb-4" style="color: #4CAF50;">
+                    <i class="fas fa-magic" style="margin-right: 8px;"></i>
+                    3단계 답변 생성 프로세스
+                </h2>
+                <div class="body-base text-center text-muted mb-6">
+                    중요성 평가 결과를 전문적인 GRI 보고서 초안으로 변환
+                </div>
+                
+                <div class="generation-steps">
+                    <!-- Step 1: Contextual Prompting -->
+                    <div class="generation-step">
+                        <div class="step-number-badge">1</div>
+                        <i class="fas fa-edit" style="font-size: 24px; color: #4CAF50; margin-bottom: 12px;"></i>
+                        <h3 class="heading-6 mb-3">구조화된 프롬프팅</h3>
+                        <div class="body-small mb-3">사용자 답변과 GRI 표준을 지능적으로 결합</div>
+                        
+                        <div class="prompt-visualization">
+                            Context: {user_answers}<br/>
+                            Standard: GRI {standard_id}<br/>
+                            Format: Professional Report
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: AI Draft Generation -->
+                    <div class="generation-step">
+                        <div class="step-number-badge">2</div>
+                        <i class="fas fa-robot" style="font-size: 24px; color: #4CAF50; margin-bottom: 12px;"></i>
+                        <h3 class="heading-6 mb-3">전문가 AI 생성</h3>
+                        <div class="body-small mb-3">KoAlpaca-GRI 모델이 표준 준수 초안 생성</div>
+                        
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; font-size: 11px; border: 2px solid #6f42c1;">
+                            <strong>전문적이고 규정을 준수하는<br/>보고서 문단이 자동 생성됩니다</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Human Review -->
+                    <div class="generation-step">
+                        <div class="step-number-badge">3</div>
+                        <i class="fas fa-user-check" style="font-size: 24px; color: #4CAF50; margin-bottom: 12px;"></i>
+                        <h3 class="heading-6 mb-3">Human-in-the-Loop</h3>
+                        <div class="body-small mb-3">사용자 검토, 편집 및 최종 승인</div>
+                        
+                        <div style="background: #e8f5e8; padding: 12px; border-radius: 8px; font-size: 11px; border: 2px solid #4CAF50;">
+                            <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
+                            <strong> 공식 기업 자산으로 승인</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: 투명성 & 데모 전환 -->
+            <div class="transparency-section">
+                <h3 class="heading-6 mb-3" style="color: #FF9800;">
+                    <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                    투명성 & 현재 상태
+                </h3>
+                
+                <div class="limitation-grid">
+                    <div class="limitation-item">
+                        <h4 class="body-base font-weight-600" style="color: #4CAF50;">
+                            <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                            현재 지원
+                        </h4>
+                        <div class="body-small mt-2">
+                            <strong>GRI Standards</strong><br/>
+                            글로벌 표준, 구조화됨, AI 최적화
+                        </div>
+                    </div>
+                    
+                    <div class="limitation-item">
+                        <h4 class="body-base font-weight-600" style="color: #FF9800;">
+                            <i class="fas fa-clock" style="margin-right: 8px;"></i>
+                            개발 중
+                        </h4>
+                        <div class="body-small mt-2">
+                            <strong>ESRS, SASB</strong><br/>
+                            별도 파인튜닝 필요 (로드맵 포함)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body-base mt-4" style="color: #666; text-align: center;">
+                    <strong>왜 GRI부터 시작했는가?</strong> 글로벌 표준이며, 구조화되어 있어 AI가 학습하기 최적의 프레임워크
+                </div>
+            </div>
+            
+            <!-- 데모 사이트 링크 -->
+            <div class="text-center mt-8">
+                <a href="https://kimdonghee.com/gri" target="_blank" 
+                   class="demo-link-button">
+                    <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                    GRI Answer Engine 체험하기
+                    <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
         </div>
         
         <!-- 푸터 -->
         <div class="footer">
-            <p>ESG GenAI Compliance Platform | Solution Overview | 5/11</p>
+            <p>ESG GenAI Compliance Platform | GRI Answer Engine | 5/9</p>
         </div>
     </div>
 
     <script>
+        // 팩토리 스텝 호버 효과
+        document.querySelectorAll('.factory-step').forEach(step => {
+            step.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('fine-tuning') && !this.classList.contains('output-model')) {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.2)';
+                }
+            });
+            
+            step.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('fine-tuning') && !this.classList.contains('output-model')) {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });
+
+        // 생성 단계 순차 애니메이션
+        document.querySelectorAll('.generation-step').forEach((step, index) => {
+            setTimeout(() => {
+                step.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            }, index * 200);
+        });
+
         // 키보드 네비게이션
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowLeft') {
                 window.location.href = '04-competitive-landscape.html';
             } else if (event.key === 'ArrowRight') {
-                window.location.href = '06-key-features.html';
+                window.location.href = '06-proven-execution.html';
             }
         });
+        
+        // CSS 애니메이션 정의
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

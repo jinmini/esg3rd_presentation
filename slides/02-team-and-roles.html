@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG GenAI Compliance Platform - ESG Watchdog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/common.css">
+</head>
+<body>
+    <div class="slide-container">
+        <!-- 배경 패턴 -->
+        <div class="pattern-dots">
+            <svg width="400" height="400" viewBox="0 0 100 100">
+                <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <circle cx="5" cy="5" r="1" fill="currentColor" />
+                </pattern>
+                <rect width="100" height="100" fill="url(#dots)" />
+            </svg>
+        </div>
+        
+        <!-- 로고 -->
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+        </div>
+        
+        <!-- 메인 콘텐츠 -->
+        <div class="slide-content">
+            <div class="text-center mb-10">
+                <div class="accent-line animate-accent-line mx-auto"></div>
+                <h1 class="heading-3 mb-4 animate-title">ESG Watchdog</h1>
+                <p class="body-large text-muted animate-subtitle">
+                    각자의 전문성으로 <span class="enhanced-highlight">AI 기반 ESG 솔루션의 초석</span>을 다졌습니다.
+                </p>
+            </div>
+            
+            <!-- 팀 프로필 그리드 -->
+            <div class="team-grid">
+                <!-- Team Member A - AI Engineer -->
+                <div class="profile-card">
+                    <div class="profile-avatar">김동희</div>
+                    <div class="profile-role">
+                        <i class="fas fa-robot"></i>
+                        AI Engineer
+                    </div>
+                    <p class="profile-contribution">
+                        HuggingFace 모델 선정부터 파인튜닝, API 배포까지 
+                        보고서 생성을 위한 핵심 AI 엔진을 구축했습니다.
+                    </p>
+                </div>
+                
+                <!-- Team Member B - Data Engineer -->
+                <div class="profile-card">
+                    <div class="profile-avatar">김영곤</div>
+                    <div class="profile-role">
+                        <i class="fas fa-database"></i>
+                        Data Engineer
+                    </div>
+                    <p class="profile-contribution">
+                        전문화된 AI 모델의 두뇌가 되는 고품질의 
+                        GRI 준수 학습 데이터셋을 구축했습니다.
+                    </p>
+                </div>
+                
+                <!-- Team Member C - Frontend Developer -->
+                <div class="profile-card">
+                    <div class="profile-avatar">김진민</div>
+                    <div class="profile-role">
+                        <i class="fas fa-desktop"></i>
+                        Frontend Developer
+                    </div>
+                    <p class="profile-contribution">
+                        ESG 실무진의 복잡한 워크플로우를 직관적인 UI와 
+                        인터랙티브 대시보드로 구현하여 사용자 경험을 설계했습니다.
+                    </p>
+                </div>
+                
+                <!-- Team Member F - Backend & DevOps -->
+                <div class="profile-card">
+                    <div class="profile-avatar">옥윤수</div>
+                    <div class="profile-role">
+                        <i class="fas fa-cogs"></i>
+                        Backend & DevOps
+                    </div>
+                    <p class="profile-contribution">
+                        중대성 평가 API 개발과 안정적인 서비스 운영을 위한 
+                        견고한 인프라(DevOps)를 엔지니어링했습니다.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 팀 성과 하이라이트 -->
+            <div class="text-center mt-12" style="opacity: 0; animation: fadeInUp 0.8s ease-out 1.4s forwards;">
+                <div class="body-base" style="color: var(--color-primary); font-weight: 600;">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i>
+                    4명의 전문가가 만들어낸 시너지
+                    <i class="fas fa-users" style="margin-left: 8px;"></i>
+                </div>
+                <div class="body-small text-muted mt-2">
+                    다양한 기술 영역의 융합으로 완성된 ESG GenAI Platform
+                </div>
+            </div>
+        </div>
+        
+        <!-- 푸터 -->
+        <div class="footer">
+            <p>ESG GenAI Compliance Platform | 우리의 팀 | 2/9</p>
+        </div>
+    </div>
+
+    <script>
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                window.location.href = '01-title.html';
+            } else if (event.key === 'ArrowRight') {
+                window.location.href = '03-market-opportunity.html';
+            }
+        });
+    </script>
+</body>
+</html>
